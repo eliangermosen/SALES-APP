@@ -1,29 +1,16 @@
 ﻿using Sales.Domain.Entites;
-using Sales.Infraestructure.Core;
+using Sales.Infraestructure.Context;
 using Sales.Infraestructure.Interfaces;
 
 namespace Sales.Infraestructure.Dao
 {
-    public class RolMenuDb : IRolMenuDb
+    public class RolMenuDb : DaoBase<RolMenu>, IRolMenuDb
     {
-        public bool Exist(string name)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly SalesContext _salesContext;
 
-        public List<RolMenu> GetAll()
+        public RolMenuDb(SalesContext context) : base(context)
         {
-            throw new NotImplementedException();
-        }
-
-        public RolMenu GetById(int entityId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DataResult Save(RolMenu entity)
-        {
-            throw new NotImplementedException();
+            this._salesContext = context;
         }
     }
 }

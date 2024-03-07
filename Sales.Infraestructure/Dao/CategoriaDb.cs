@@ -1,29 +1,25 @@
 ﻿using Sales.Domain.Entites;
+using Sales.Infraestructure.Context;
 using Sales.Infraestructure.Core;
 using Sales.Infraestructure.Interfaces;
 
 namespace Sales.Infraestructure.Dao
 {
-    public class CategoriaDb : ICategoriaDb
+    public class CategoriaDb : DaoBase<Categoria>, ICategoriaDb
     {
-        public bool Exist(string name)
+        private readonly SalesContext _salesContext;
+        public CategoriaDb(SalesContext context) : base(context)
         {
-            throw new NotImplementedException();
+            this._salesContext = context;
         }
-
-        public List<Categoria> GetAll()
+        public override DataResult Save(Categoria entity)
         {
-            throw new NotImplementedException();
+            //con base llamo a la clase pricipal o padre en este caso DaoBase
+            return base.Save(entity);
         }
-
-        public Categoria GetById(int entityId)
+        public override List<Categoria> GetAll()
         {
-            throw new NotImplementedException();
-        }
-
-        DataResult IDaoBase<Categoria>.Save(Categoria entity)
-        {
-            throw new NotImplementedException();
+            return base.GetEntitiesWithFilters(cat => !cat.Eliminado);
         }
     }
 }

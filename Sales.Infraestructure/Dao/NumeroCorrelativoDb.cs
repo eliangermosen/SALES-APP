@@ -1,29 +1,16 @@
 ﻿using Sales.Domain.Entites;
-using Sales.Infraestructure.Core;
+using Sales.Infraestructure.Context;
 using Sales.Infraestructure.Interfaces;
 
 namespace Sales.Infraestructure.Dao
 {
-    public class NumeroCorrelativoDb : INumeroCorrelativoDb
+    public class NumeroCorrelativoDb : DaoBase<NumeroCorrelativo>, INumeroCorrelativoDb
     {
-        public bool Exist(string name)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly SalesContext _salesContext;
 
-        public List<NumeroCorrelativo> GetAll()
+        public NumeroCorrelativoDb(SalesContext context) : base(context)
         {
-            throw new NotImplementedException();
-        }
-
-        public NumeroCorrelativo GetById(int entityId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DataResult Save(NumeroCorrelativo entity)
-        {
-            throw new NotImplementedException();
+            this._salesContext = context;
         }
     }
 }

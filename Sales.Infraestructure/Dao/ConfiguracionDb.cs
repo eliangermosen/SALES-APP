@@ -1,29 +1,24 @@
 ﻿using Sales.Domain.Entites;
+using Sales.Infraestructure.Context;
 using Sales.Infraestructure.Core;
 using Sales.Infraestructure.Interfaces;
 
 namespace Sales.Infraestructure.Dao
 {
-    public class ConfiguracionDb : IConfiguracionDb
+    public class ConfiguracionDb : DaoBase<Configuracion>, IConfiguracionDb
     {
-        public bool Exist(string name)
+        private readonly SalesContext _salesContext;
+        public ConfiguracionDb(SalesContext context) : base(context)
         {
-            throw new NotImplementedException();
+            this._salesContext = context;
         }
 
-        public List<Configuracion> GetAll()
+        public override DataResult Save(Configuracion entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public Configuracion GetById(int entityId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DataResult Save(Configuracion entity)
-        {
-            throw new NotImplementedException();
+            DataResult result = new DataResult();
+            // logica para almacenar
+            return result;
+            //return base.Save(entity);
         }
     }
 }

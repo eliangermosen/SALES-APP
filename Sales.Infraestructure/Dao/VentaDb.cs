@@ -1,29 +1,16 @@
 ﻿using Sales.Domain.Entites;
-using Sales.Infraestructure.Core;
+using Sales.Infraestructure.Context;
 using Sales.Infraestructure.Interfaces;
 
 namespace Sales.Infraestructure.Dao
 {
-    public class VentaDb : IVentaDb
+    public class VentaDb : DaoBase<Venta>, IVentaDb
     {
-        public bool Exist(string name)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly SalesContext _salesContext;
 
-        public List<Venta> GetAll()
+        public VentaDb(SalesContext context) : base(context)
         {
-            throw new NotImplementedException();
-        }
-
-        public Venta GetById(int entityId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DataResult Save(Venta entity)
-        {
-            throw new NotImplementedException();
+            this._salesContext = context;
         }
     }
 }

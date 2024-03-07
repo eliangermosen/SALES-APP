@@ -2,11 +2,14 @@
 
 namespace Sales.Infraestructure.Core
 {
-    public interface IDaoBase<TEntity> //where TEntity : BaseEntity
+    public interface IDaoBase<TEntity> where TEntity : class
     {
         DataResult Save(TEntity entity);
+        DataResult Update(TEntity entity);
         List<TEntity> GetAll();
-        TEntity GetById(int entityId);
-        bool Exist(string name);
+        List<TEntity> GetEntitiesWithFilters(Func<TEntity, bool> filter);
+        TEntity GetById(int id);
+        bool Exist(Func<TEntity, bool> filter);
+        int Commit();
     }
 }

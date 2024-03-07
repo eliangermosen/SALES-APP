@@ -1,29 +1,16 @@
 ﻿using Sales.Domain.Entites;
-using Sales.Infraestructure.Core;
+using Sales.Infraestructure.Context;
 using Sales.Infraestructure.Interfaces;
 
 namespace Sales.Infraestructure.Dao
 {
-    public class NegocioDb : INegocioDb
+    public class NegocioDb : DaoBase<Negocio>, INegocioDb
     {
-        public bool Exist(string name)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly SalesContext _salesContext;
 
-        public List<Negocio> GetAll()
+        public NegocioDb(SalesContext context) : base(context)
         {
-            throw new NotImplementedException();
-        }
-
-        public Negocio GetById(int entityId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DataResult Save(Negocio entity)
-        {
-            throw new NotImplementedException();
+            this._salesContext = context;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Sales.Domain.Core;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sales.Domain.Entites
 {
@@ -7,11 +8,12 @@ namespace Sales.Domain.Entites
     {
         public int Id { get; set; }
         [MaxLength(50)]
-        public string? Name { get; set; }
+        public string? Nombre { get; set; }
         [MaxLength(50)]
         public string? Correo { get; set; }
         [MaxLength(50)]
         public string? Telefono { get; set; }
+        [ForeignKey("Rol")]
         public int IdRol { get; set; }
         [MaxLength(500)]
         public string? UrlFoto { get; set; }
