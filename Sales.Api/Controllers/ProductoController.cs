@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sales.Infraestructure.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +9,21 @@ namespace Sales.Api.Controllers
     [ApiController]
     public class ProductoController : ControllerBase
     {
+        private readonly IProductoDb _productoDb;
+
+        public ProductoController(IProductoDb productoDb)
+        {
+            _productoDb = productoDb;
+        }
+
+        // GET: api/<ProductoController>
+        [HttpGet("byCategory")]
+        public IActionResult GetProductsByCategory(int category)
+        {
+            var result = _productoDb.GetProductsByCategories(category);
+            return Ok(result);
+        }
+
         // GET: api/<ProductoController>
         [HttpGet]
         public IEnumerable<string> Get()

@@ -9,6 +9,8 @@ builder.Services.AddDbContext<SalesContext>(options => options.UseSqlServer(buil
 
 // Add services to the container.
 builder.Services.AddScoped<IUsuarioDb, UsuarioDb>();
+builder.Services.AddScoped<IProductoDb, ProductoDb>();
+builder.Services.AddScoped<IVentaDb, VentaDb>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
