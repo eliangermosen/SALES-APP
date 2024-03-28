@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Sales.Infraestructure.Dao;
-using Sales.Infraestructure.Interfaces;
+using Sales.AppServices.Contract;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,18 +9,22 @@ namespace Sales.Api.Controllers
     [ApiController]
     public class VentaController : ControllerBase
     {
-        public readonly IVentaDb _ventaDB;
+        private readonly IVentaService _ventaService;
 
-        public VentaController(IVentaDb ventaDB)
+        public VentaController(IVentaService ventaService)
         {
-            _ventaDB = ventaDB;
+            _ventaService = ventaService;
         }
 
         // GET: api/<VentaController>
         [HttpGet("byUser")]
-        public IActionResult GetSaleByUser(int userId)
+        public async Task<IActionResult> GetSaleByUser(int userId)
         {
-            var result = _ventaDB.GetByVendedor(userId);
+            var result = await this._ventaService.GetByVendedor(userId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
             return Ok(result);
         }
 

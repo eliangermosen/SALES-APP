@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Sales.Infraestructure.Interfaces;
+using Sales.AppServices.Contract;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,18 +9,22 @@ namespace Sales.Api.Controllers
     [ApiController]
     public class ProductoController : ControllerBase
     {
-        private readonly IProductoDb _productoDb;
+        private readonly IProductoService _productoService;
 
-        public ProductoController(IProductoDb productoDb)
+        public ProductoController(IProductoService productoService)
         {
-            _productoDb = productoDb;
+            _productoService = productoService;
         }
 
         // GET: api/<ProductoController>
         [HttpGet("byCategory")]
-        public IActionResult GetProductsByCategory(int category)
+        public async Task<IActionResult> GetProductsByCategory(int category)
         {
-            var result = _productoDb.GetProductsByCategories(category);
+            var result = await _productoService.GetProductsByCategories(category);
+
+            if(!result.Success)
+                return BadRequest(result);
+
             return Ok(result);
         }
 

@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Sales.AppServices.Contract;
+using Sales.AppServices.Service;
 using Sales.Infraestructure.Context;
 using Sales.Infraestructure.Dao;
 using Sales.Infraestructure.Interfaces;
@@ -11,6 +13,8 @@ builder.Services.AddDbContext<SalesContext>(options => options.UseSqlServer(buil
 builder.Services.AddScoped<IUsuarioDb, UsuarioDb>();
 builder.Services.AddScoped<IProductoDb, ProductoDb>();
 builder.Services.AddScoped<IVentaDb, VentaDb>();
+builder.Services.AddScoped<IVentaService, VentaService>();
+builder.Services.AddScoped<IProductoService, ProductoService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
