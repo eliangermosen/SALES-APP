@@ -54,7 +54,7 @@ namespace Sales.Infraestructure.Dao
 
             this._entities.Update(entity);
 
-            await this.Commit();
+            //this.Commit();
 
             result.Success = true;
 

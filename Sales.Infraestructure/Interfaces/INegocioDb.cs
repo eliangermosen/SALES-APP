@@ -3,7 +3,7 @@ using Sales.Infraestructure.Core;
 
 namespace Sales.Infraestructure.Interfaces
 {
-    internal interface INegocioDb : IDaoBase<Negocio>
+    public interface INegocioDb : IDaoBase<Negocio>
     {
     }
 }
