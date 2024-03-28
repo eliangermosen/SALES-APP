@@ -12,14 +12,14 @@ namespace Sales.Infraestructure.Dao
         {
             this._salesContext = context;
         }
-        public override DataResult Save(Categoria entity)
+        public override Task<DataResult> Save(Categoria entity)
         {
             //con base llamo a la clase pricipal o padre en este caso DaoBase
             return base.Save(entity);
         }
-        public override List<Categoria> GetAll()
+        public override async Task<List<Categoria>> GetAll()
         {
-            return base.GetEntitiesWithFilters(cat => !cat.Eliminado);
+            return await base.GetEntitiesWithFilters(cat => !cat.Eliminado);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Sales.Infraestructure.Dao
             this._salesContext = context;
         }
 
-        public override DataResult Save(Configuracion entity)
+        public override async Task<DataResult> Save(Configuracion entity)
         {
             DataResult result = new DataResult();
             // logica para almacenar

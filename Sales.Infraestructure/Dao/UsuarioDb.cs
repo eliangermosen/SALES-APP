@@ -23,7 +23,7 @@ namespace Sales.Infraestructure.Dao
             this._configuration = configuration;
         }
 
-        public override DataResult Save(Usuario entity)
+        public override async Task<DataResult> Save(Usuario entity)
         {
             DataResult result = new DataResult();
 
@@ -32,8 +32,8 @@ namespace Sales.Infraestructure.Dao
                 if (base.Exist(user => user.Nombre == entity.Nombre))
                     throw new UsuarioException(this._configuration["UsuarioMessage:NameDuplicate"]);
 
-                base.Save(entity);
-                base.Commit();
+                await base.Save(entity);
+                await base.Commit();
 
             }
             catch (Exception ex)
@@ -44,14 +44,14 @@ namespace Sales.Infraestructure.Dao
             }
             return result;
         }
-        public override DataResult Update(Usuario entity)
+        public override async Task<DataResult> Update(Usuario entity)
         {
             DataResult result = new DataResult();
 
             try
             {
 
-                Usuario userToUpdate = base.GetById(entity.Id);
+                Usuario userToUpdate = await base.GetById(entity.Id);
 
                 userToUpdate.Nombre = entity.Nombre;
                 userToUpdate.Telefono = entity.Telefono;
@@ -66,8 +66,8 @@ namespace Sales.Infraestructure.Dao
                 userToUpdate.IdUsuarioMod = entity.IdUsuarioMod;
                 userToUpdate.EsActivo = entity.EsActivo;
 
-                base.Update(entity);
-                base.Commit();
+                await base.Update(entity);
+                await base.Commit();
             }
             catch (Exception ex)
             {

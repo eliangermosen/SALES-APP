@@ -21,13 +21,13 @@ namespace Sales.Infraestructure.Dao
             this._configuration = configuration;
         }
 
-        public override List<Negocio> GetAll()
+        public override async Task<List<Negocio>> GetAll()
         {
             List<Negocio> listaNegocio = new List<Negocio>();
 
             try
             {
-                return base.GetAll();
+                return await base.GetEntitiesWithFilters(neg => !neg.Eliminado);
             }
             catch (Exception ex)
             {

@@ -20,46 +20,51 @@ namespace Sales.Infraestructure.Dao
             return this._entities.Any(filter);
         }
 
-        public virtual List<TEntity> GetAll()
+        public virtual async Task<List<TEntity>> GetAll()
         {
-            return this._entities.ToList();
+            return await this._entities.ToListAsync();
         }
 
-        public virtual TEntity GetById(int id)
+        public virtual async Task<TEntity> GetById(int id)
         {
-            return this._entities.Find(id);
+            return await this._entities.FindAsync(id);
         }
 
-        public virtual List<TEntity> GetEntitiesWithFilters(Func<TEntity, bool> filter)
+        public async virtual Task<List<TEntity>> GetEntitiesWithFilters(Func<TEntity, bool> filter)
         {
-            throw new NotImplementedException();
+            return this._entities.Where(filter).ToList();
         }
 
-        public virtual DataResult Save(TEntity entity)
+        public virtual async Task<DataResult> Save(TEntity entity)
         {
             DataResult result = new DataResult();
 
             this._entities.Add(entity);
 
+            await this.Commit();
+
             result.Success = true;
 
             return result;
         }
 
-        public virtual DataResult Update(TEntity entity)
+        public virtual async Task<DataResult> Update(TEntity entity)
         {
             DataResult result = new DataResult();
 
             this._entities.Update(entity);
 
+            await this.Commit();
+
             result.Success = true;
 
             return result;
         }
 
-        public virtual int Commit()
+        public async virtual Task<int> Commit()
         {
-            return this._context.SaveChanges();
+            return await this._context.SaveChangesAsync();
         }
+
     }
 }
