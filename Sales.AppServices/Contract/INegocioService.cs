@@ -1,4 +1,4 @@
-﻿using Sales.AppServices.DTOs;
+﻿using Sales.AppServices.DTOs.Negocio;
 
 namespace Sales.AppServices.Contract
 {

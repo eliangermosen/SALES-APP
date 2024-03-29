@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Sales.AppServices.Contract;
 using Sales.AppServices.Core;
-using Sales.AppServices.DTOs;
+using Sales.AppServices.DTOs.Negocio;
 using Sales.Domain.Entites;
 using Sales.Infraestructure.Interfaces;
 

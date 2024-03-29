@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sales.AppServices.DTOs
+namespace Sales.AppServices.DTOs.Negocio
 {
-    public class NegocioGetDTO
+    public class NegocioPutDTO
     {
-        public int Id { get; set; }
+        [Url]
         [MaxLength(500)]
         public string? UrlLogo { get; set; }
         [MaxLength(100)]
@@ -24,5 +24,9 @@ namespace Sales.AppServices.DTOs
         public string? Direccion { get; set; }
         [MaxLength(50)]
         public string? Telefono { get; set; }
+        public decimal? PorcentajeImpuesto { get; set; }
+        public string? SimboloMoneda { get; set; }
+        //public DateTime? FechaMod { get; set; }
+        //public int? IdUsuarioMod { get; set; }
     }
 }
