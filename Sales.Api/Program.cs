@@ -14,9 +14,11 @@ builder.Services.AddScoped<IUsuarioDb, UsuarioDb>();
 builder.Services.AddScoped<IProductoDb, ProductoDb>();
 builder.Services.AddScoped<IVentaDb, VentaDb>();
 builder.Services.AddScoped<INegocioDb, NegocioDb>();
+builder.Services.AddScoped<IDetalleVentaDb, DetalleVentaDb>();
 builder.Services.AddScoped<IVentaService, VentaService>();
 builder.Services.AddScoped<IProductoService, ProductoService>();
 builder.Services.AddScoped<INegocioService, NegocioService>();
+builder.Services.AddScoped<IDetalleVentaService, DetalleVentaService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
