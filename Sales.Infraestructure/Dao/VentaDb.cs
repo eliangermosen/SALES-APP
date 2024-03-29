@@ -142,6 +142,7 @@ namespace Sales.Infraestructure.Dao
             try
             {
                 await base.Save(entity);
+                dataResult.Message = "Venta guardada";
             }
             catch (Exception ex)
             {

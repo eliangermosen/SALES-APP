@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sales.Domain.Entites
 {
@@ -7,7 +8,9 @@ namespace Sales.Domain.Entites
         public int Id { get; set; }
         [MaxLength(6)]
         public string? NumeroVenta { get; set; }
+        [ForeignKey("TipoDocumentoVenta")]
         public int? IdTipoDocumentoVenta { get; set; }
+        [ForeignKey("Usuario")]
         public int? IdUsuario { get; set; }
         [MaxLength(10)]
         public string? CocumentoCliente { get; set; }

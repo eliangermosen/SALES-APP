@@ -1,5 +1,6 @@
 ﻿using Sales.Domain.Core;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sales.Domain.Entites
 {
@@ -12,6 +13,7 @@ namespace Sales.Domain.Entites
         public string? Marca { get; set; }
         [MaxLength(100)]
         public string? Descripcion { get; set; }
+        [ForeignKey("Categoria")]
         public int? IdCategoria { get; set; }
         public int? Stock { get; set; }
         [MaxLength(500)]
